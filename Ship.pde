@@ -3,15 +3,17 @@ class Ship extends GameObject{
   PVector direction;
   int shotTimer;
   int threshold;
+
   
   //2.Constructor
   Ship() {
+    invincible = 30;
     lives = 3;
     shotTimer = 0;
     threshold = 30;
     location = new PVector(width/2, height/2);
     velocity = new PVector(0, 0); 
-    direction = new PVector(0, -0.05);
+    direction = new PVector(0, -0.1);
   }  
   //3.Behaviour functions
   void show() {
@@ -25,6 +27,9 @@ class Ship extends GameObject{
   }
   void act() {
     super.act();
+    if( invincible >= 0){
+      invincible--;
+    }
     shotTimer++;
     location.add(velocity);
     if (up) velocity.add(direction);
@@ -35,7 +40,19 @@ class Ship extends GameObject{
       myGameObjects.add(new Bullet());
       shotTimer=0;
     }
-    
+    int i=0;
+    while( i < myGameObjects.size()){
+      GameObject myObj = myGameObjects.get(i);
+      if(myObj instanceof Asteroid && invincible < 0){
+        if(dist(myObj.location.x,myObj.location.y,location.x,location.y) <= size/2+myObj.size/2){
+          lives--;
+          mode++;
+        }
+        
+        
+      }
+      i++;
+    }
     
   }
 }

@@ -2,11 +2,14 @@ final int intro = 0;
 final int game = 1;
 final int gameover = 2;
 int mode;
+int score;
+int bg;
 PFont font;
 boolean up,down,left,right,space;
 PImage shipimg;
 PImage explosion;
 PImage background;
+int invincible;
 Ship myShip;
 ArrayList<GameObject> myGameObjects;
 
@@ -15,9 +18,12 @@ void setup(){
   textAlign(CENTER, CENTER);
   font = createFont("Comic Sans MS", 30);
   mode = 0;
+  score = 0;
+  invincible = 180;
+  bg=-600;
   background = loadImage("Background.jpg");
   background.resize(width,height);
-  explosion = loadImage("explosion.png");
+  explosion = loadImage("explosion1.png");
   shipimg = loadImage("spaceship.png");
   shipimg.resize(50,50);
   imageMode(CENTER);

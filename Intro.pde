@@ -9,5 +9,5 @@ void introDraw(){
 void introPress(){
 }
 void introRelease(){
-  mode=game;
+  mode++;
 }

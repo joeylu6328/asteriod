@@ -1,4 +1,19 @@
 void gameoverDraw(){
+  fill(0,0,0,5);
+  noStroke();
+  rect(0,bg,800,600);
+  if(bg<0){
+    bg+=12;
+  }
+  fill(250,0,0);
+  textSize(100);
+  text("GAMEOVER", 400, bg+300);
+  if(bg>=0){
+    fill(255);
+    textSize(30);
+    text("Score: "+score, 400,480);
+    text("Lives remain: "+myShip.lives, 400,520);
+  }
 }
 
 
@@ -7,4 +22,11 @@ void gameoverPress(){
 
 
 void gameoverRelease(){
+  
+  if(myShip.lives>0&&key == ENTER){
+    mode=1;
+    invincible = 180;
+    bg=-600;
+  }
+  
 }

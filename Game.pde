@@ -1,5 +1,8 @@
 void gameDraw(){
   background(0);
+  fill(125);
+  textSize(60);
+  text(score,400,500);
   myShip.show(); 
   myShip.act();
   int i = 0;

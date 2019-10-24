@@ -34,7 +34,8 @@ class Asteroid extends GameObject{
       if(myObj instanceof Bullet){
         if(dist(myObj.location.x,myObj.location.y,location.x,location.y) <= size/2+myObj.size/2){
           explosion.resize(size/2, size/2);
-          image(explosion, location.x, location.y);          
+          image(explosion, location.x, location.y);   
+          score++;
           lives = 0;
           myObj.lives = 0;
           myGameObjects.add(new Asteroid(size/2,location.x,location.y));
@@ -43,6 +44,7 @@ class Asteroid extends GameObject{
             myGameObjects.add(new Explosion(size/4,location.x,location.y));
           }
         }
+        
         
       }
       i++;
