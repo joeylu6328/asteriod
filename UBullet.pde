@@ -1,0 +1,6 @@
+class UBullet extends GameObject{
+  
+  
+  
+  
+}

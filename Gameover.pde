@@ -26,6 +26,9 @@ void gameoverRelease(){
   if(myShip.lives>0&&key == ENTER){
     mode=1;
     invincible = 180;
+    myShip.location.x=width/2;
+    myShip.location.y=height/2;
+    myShip.velocity.setMag(0);
     bg=-600;
   }
   
