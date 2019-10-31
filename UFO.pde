@@ -1,48 +1,55 @@
 class UFO extends GameObject{
-  PVector direction;
+  
+  PImage UFO = loadImage("UFO.png");
   int shotTimer;
   int threshold;
-
   
   UFO() {
     lives = 1;
+    size = 50;
     shotTimer = 0;
-    threshold = 30;
-    location = new PVector(width/2, height/2);
-    velocity = new PVector(0, 0); 
-    direction = new PVector(0, -0.1);
+    threshold = 180;
+    location = new PVector(random(10,width), random(10,height));      
+    while((location.x > width/4 && location.x < width*3/4)&&(location.y > height/4 && location.y < height*3/4)){
+      location = new PVector(random(10,width), random(10,height));      
+    }
+    if(location.x <= width/4 || location.x >= width*3/4){
+      velocity = new PVector(0, 1); 
+    }
+    else{
+      velocity = new PVector(1, 0); 
+    }
   }  
   void show() {
     pushMatrix();
     translate(location.x, location.y);
-    rotate(direction.heading()+PI/2);
-    image(shipimg, 0, 0);    
+    image(UFO, 0, 0, size, size);    
     popMatrix();
     
     
   }
   void act() {
     super.act();
-    if( invincible >= 0){
-      invincible--;
-    }
     shotTimer++;
-    location.add(velocity);
-    if (up) velocity.add(direction);
-    if (down) velocity.sub(direction);
-    if (left) direction.rotate(-radians(2));
-    if (right) direction.rotate(radians(2));
-    if (space && shotTimer>=threshold) {
-      myGameObjects.add(new Bullet());
+    if(shotTimer < threshold/2){
+      location.add(velocity);
+    }
+    if (shotTimer >= threshold) {
+      myGameObjects.add(new UBullet(location.x,location.y));
       shotTimer=0;
     }
+          
     int i=0;
     while( i < myGameObjects.size()){
       GameObject myObj = myGameObjects.get(i);
-      if(myObj instanceof Asteroid && invincible < 0){
+      if(myObj instanceof Bullet){
         if(dist(myObj.location.x,myObj.location.y,location.x,location.y) <= size/2+myObj.size/2){
-          lives--;
-          mode++;
+          score+=2;
+          lives = 0;
+          myObj.lives = 0;
+          for (int j =0; j< 30; j++){
+            myGameObjects.add(new Explosion(size/4,location.x,location.y));
+          }
         }
         
         

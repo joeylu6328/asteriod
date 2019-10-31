@@ -19,7 +19,7 @@ void setup(){
   font = createFont("Comic Sans MS", 30);
   mode = 0;
   score = 0;
-  invincible = 180;
+  invincible = 360;
   bg=-600;
   background = loadImage("Background.jpg");
   background.resize(width,height);

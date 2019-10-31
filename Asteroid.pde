@@ -26,6 +26,7 @@ class Asteroid extends GameObject{
     //ellipse(location.x,location.y,size,size);
   }
   void act(){
+    location.add(velocity);
     super.act();
     int i = 0;
     while( i < myGameObjects.size()){
@@ -40,6 +41,11 @@ class Asteroid extends GameObject{
           for (int j =0; j< 30; j++){
             myGameObjects.add(new Explosion(size/4,location.x,location.y));
           }
+          float ran = random(0,3);
+          if(ran < 1){
+            myGameObjects.add(new UFO());
+          }
+          
         }
         
         

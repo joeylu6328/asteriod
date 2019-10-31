@@ -26,6 +26,7 @@ class Ship extends GameObject{
     
   }
   void act() {
+    location.add(velocity);
     super.act();
     if( invincible >= 0){
       invincible--;
@@ -43,9 +44,10 @@ class Ship extends GameObject{
     int i=0;
     while( i < myGameObjects.size()){
       GameObject myObj = myGameObjects.get(i);
-      if(myObj instanceof Asteroid && invincible < 0){
+      if((myObj instanceof Asteroid || myObj instanceof UBullet) && invincible < 0){
         if(dist(myObj.location.x,myObj.location.y,location.x,location.y) <= size/2+myObj.size/2){
           lives--;
+          myObj.lives=0;
           mode++;
         }
         
