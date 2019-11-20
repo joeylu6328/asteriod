@@ -15,7 +15,7 @@ class Asteroid extends GameObject{
     size = s;
     location = new PVector(x, y);
     velocity = new PVector(0,1);
-    velocity.setMag( random(1,3));
+    velocity.setMag( random(0,2));
     velocity.rotate( random(TWO_PI));   
   }
   

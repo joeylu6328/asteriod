@@ -20,6 +20,8 @@ void gameDraw(){
   
   
 }
+void gameMouse(){
+}
 void gamePress(){
   if(keyCode == UP) up = true;
   if(keyCode == DOWN) down = true;

@@ -6,9 +6,10 @@ int score;
 int bg;
 PFont font;
 boolean up,down,left,right,space;
-PImage shipimg;
+
 PImage explosion;
 PImage background;
+
 int invincible;
 Ship myShip;
 ArrayList<GameObject> myGameObjects;
@@ -19,15 +20,12 @@ void setup(){
   font = createFont("Comic Sans MS", 30);
   mode = 0;
   score = 0;
-  invincible = 360;
   bg=-600;
   background = loadImage("Background.jpg");
   background.resize(width,height);
   explosion = loadImage("explosion1.png");
-  shipimg = loadImage("spaceship.png");
-  shipimg.resize(50,50);
+ 
   imageMode(CENTER);
-  myShip = new Ship();
   myGameObjects = new ArrayList<GameObject>();  
   myGameObjects.add(new Asteroid());
   myGameObjects.add(new Asteroid());
@@ -47,6 +45,17 @@ void draw(){
   }
   
   
+}
+void mouseReleased(){
+  if (mode==intro) {
+    introMouse();
+  } else if (mode==game) {
+    gameMouse();
+  } else if (mode==gameover) {
+    gameoverMouse();
+  } else {
+    println("Mode error");
+  }
 }
 void keyPressed(){
   if (mode==intro) {

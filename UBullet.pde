@@ -1,5 +1,5 @@
 class UBullet extends GameObject{
-  PImage bullet = loadImage("Bullet.png");
+  PImage ubullet = loadImage("UBullet.png");
   
   UBullet(float x, float y){
     location = new PVector(x,y);
@@ -9,8 +9,8 @@ class UBullet extends GameObject{
     lives = 1;
   }
   void show(){
-    bullet.resize(size, size);
-    image(bullet, location.x, location.y);
+    ubullet.resize(size, size);
+    image(ubullet, location.x, location.y);
     //fill(255,0,0);
     //ellipse(location.x,location.y,size,size);
     
